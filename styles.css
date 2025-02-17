@@ -1,0 +1,443 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Body Styling */
+body {
+    background-color: #25274D;
+    color: #ffffff;
+}
+
+/* Header Styling */
+header {
+    background-color: #25274D;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 2px solid #AAABB8;
+}
+
+/* Nav Container */
+nav.divContainer {
+    display: flex; /* Enables flexbox layout */
+    justify-content: space-between; /* Distributes space between leftS, middleS, and rightS */
+    align-items: center; /* Vertically aligns items to the center */
+    padding: 10px 20px 10px 10px; /* Adds padding around the container */
+}
+
+/* Left Side: Logo */
+.leftS .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #AAABBB;
+}
+
+/* Middle: Navigation Links */
+.middleS ul.nav-links {
+    list-style: none; /* Removes bullet points from the list */
+    margin: 0; /* Resets default margins */
+    padding: 0; /* Resets default padding */
+    display: flex; /* Makes the list items arrange horizontally */
+    gap: 2rem; /* Adds spacing between links */
+}
+
+.middleS li {
+    margin: 0; /* No additional margin needed with gap */
+}
+
+.middleS a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.middleS a:hover {
+    font-weight: bold;
+}
+
+/* Right Side: Search Bar and Cart Icon */
+.rightS {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Adds spacing between search bar and cart icon */
+}
+
+.rightS .search-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cart {
+    position: relative;
+    cursor: pointer;
+}
+
+.cart-count {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: #29648A;
+    padding: 2px 8px;
+    border-radius: 50%;
+    font-size: 0.8rem;
+}
+
+/* Hamburger Menu Toggle (Visible on Small Screens) */
+.menu-icon {
+    display: none; /* Hidden by default on larger screens */
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px; /* Add some padding for better touch target */
+    color: #AAABBB;
+}
+
+/* Responsive Navbar (Small Screens) */
+@media (max-width: 992px) {
+    /* Hide the middle section (navigation links) */
+    .middleS {
+        display: none; /* Collapses nav-links into hamburger menu */
+    }
+
+    /* Show the hamburger menu toggle */
+    .menu-icon {
+        display: flex; /* Shows the hamburger menu */
+    }
+
+    /* Adjust the header layout for smaller screens */
+    header nav.divContainer {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    /* Move search bar below the logo */
+    .rightS {
+        margin-top: 1rem; /* Moves the search bar below the logo */
+        width: 100%; /* Makes the search bar full width */
+    }
+
+    /* Full-width search input */
+    #search-input {
+        width: 100%; /* Full width for search input */
+    }
+}
+
+/* Hamburger Menu Styles */
+nav.divContainer .nav-links.active {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: #25274D;
+    position: absolute;
+    top: 100%; /* Below the header */
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    z-index: 999;
+}
+
+/* Hero Section Styling */
+.hero {
+    height: 100vh;
+    background-image: url('images/hero.png');
+    background-size: cover;
+    background-position: center;
+    background-size: 65%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 60px;
+    
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.cta-buttons {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.btn {
+    padding: 1rem 2rem;
+    background-color: #DA7B93;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #2E151B;
+}
+.categories h2{
+    text-align: center;
+    margin-top: 3rem;
+}
+/* Products Grid Styling (Shared for Phones and Accessories) */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.product-card {
+    border: solid 1px #AAABBB;
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+}
+
+.product-card img.product-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    object-fit: cover; /* Ensures the image scales properly */
+}
+
+.product-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.product-card .price {
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.product-card button {
+    padding: 0.5rem 1rem;
+    background-color: #AAABBB;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.product-card button:hover {
+    background-color: #29648A;
+}
+
+/* Category Buttons Styling (Shared for Phones and Accessories) */
+.category-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin: 2rem 0;
+    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+}
+
+.category-btn {
+    padding: 0.5rem 1rem;
+    border: solid 1px #AAABBB;
+    border-radius: 20px;
+    background-color: #464866;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.category-btn.active {
+    background-color: #2E9CCA;
+}
+
+.category-btn:hover {
+    background-color: #6dd3ff;
+}
+
+/* Accessories Section Styling */
+.accessories {
+    padding: 2rem;
+    background-color: #25274D;
+    color: white;
+}
+
+.accessories h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* Footer Styling */
+footer {
+    background-color: #25274D;
+    padding: 2rem;
+    margin-top: 4rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+    color: #AAABB8;
+    margin-bottom: 1rem;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-section a:hover {
+    color: #DA7B93;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid #AAABB8;
+}
+
+/* Search Container */
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#search-input {
+    padding: 0.5rem 1rem;
+    border: solid 1px #AAABBB;
+    border-radius: 20px;
+    background-color: #464866;
+    color: white;
+    transition: background-color 0.3s, border-color 0.3s;
+    font-size: 1rem;
+    width: 100%; /* Full width on small screens */
+    max-width: 200px; /* Limit width on larger screens */
+}
+
+#search-input:focus {
+    outline: none;
+    border-color: #6dd3ff;
+}
+
+#search-btn {
+    padding: 0.5rem 1rem;
+    background-color: #AAABBB;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#search-btn:hover {
+    background-color: #29648A;
+}
+
+/* Sorting and Filtering Controls */
+.sort-filter-controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin: 1rem 0;
+    flex-wrap: wrap; /* Allow controls to wrap on smaller screens */
+}
+
+.sort-filter-controls label {
+    font-size: 1rem;
+    color: #AAABB8;
+    margin-right: 0.5rem;
+}
+
+.sort-filter-controls select {
+    padding: 0.5rem 1rem;
+    border: solid 1px #AAABBB;
+    border-radius: 20px;
+    background-color: #464866;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+    font-size: 1rem;
+    appearance: none; /* Removes default dropdown arrow */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M8%201l4%204-4%204z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+    background-size: 1rem;
+}
+
+.sort-filter-controls select option {
+    background-color: #25274D;
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .hero-content h1 {
+        font-size: 2.5rem; /* Slightly reduce font size */
+    }
+    .cta-buttons {
+        flex-direction: column; /* Stack buttons vertically */
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        height: auto; /* Auto height for hero section */
+        padding: 2rem;
+    }
+    .hero-content h1 {
+        font-size: 2rem; /* Reduce font size further */
+    }
+    .products-grid,
+    .accessories-grid {
+        grid-template-columns: 1fr; /* Single-column layout for grids */
+    }
+    .category-buttons {
+        flex-direction: column; /* Stack category buttons vertically */
+        align-items: center;
+    }
+    .sort-filter-controls {
+        flex-direction: column; /* Stack sorting/filtering controls vertically */
+        align-items: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .logo {
+        font-size: 1.2rem; /* Reduce logo size */
+    }
+    .hero-content h1 {
+        font-size: 1.8rem; /* Further reduce font size */
+    }
+    .btn {
+        width: 100%; /* Make buttons full width */
+    }
+    footer .footer-content {
+        grid-template-columns: 1fr; /* Single-column layout for footer */
+    }
+}

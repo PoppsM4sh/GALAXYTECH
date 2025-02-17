@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iDeal - Premium iPhones</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <nav class="divContainer">
+            <!-- Left Side: Logo -->
+            <div class="leftS">
+                <div class="logo">iDeal</div>
+            </div>
+
+            <!-- Middle: Navigation Links -->
+            <div class="middleS">
+                <ul class="nav-links">
+                    <li><a href="#new">New iPhones</a></li>
+                    <li><a href="#used">Certified Pre-Owned</a></li>
+                    <li><a href="#accessories">Accessories</a></li>
+                    <li><a href="#support">Support</a></li>
+                </ul>
+            </div>
+
+            <!-- Right Side: Search Bar and Cart Icon -->
+            <div class="rightS">
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Search products..." />
+                    <button class="btn" id="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="cart">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+
+            <!-- Hamburger Menu Toggle (Visible on Small Screens) -->
+            <div class="menu-icon" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>iPhone 15 Pro</h1>
+            <p>Titanium. So strong. So light. So Pro.</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn">Learn More</a>
+                <a href="#" class="btn">Buy</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <h2>Shop by Category</h2>
+        <div class="category-buttons">
+            <button class="category-btn active" data-category="all">All iPhones</button>
+            <button class="category-btn" data-category="new">Brand New</button>
+            <button class="category-btn" data-category="used">Pre-Owned</button>
+        </div>
+
+        <!-- Sorting and Filtering Dropdowns -->
+        <div class="sort-filter-controls">
+            <label for="sort-select">Sort By:</label>
+            <select id="sort-select">
+                <option value="default">Default</option>
+                <option value="price-low-to-high">Price: Low to High</option>
+                <option value="price-high-to-low">Price: High to Low</option>
+            </select>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products">
+        <div class="products-grid" id="products-grid">
+            <!-- Products will be populated via JavaScript -->
+        </div>
+    </section>
+
+    <!-- Accessories Section -->
+    <section class="accessories">
+        <h2>Accessories</h2>
+        <!-- Accessory Category Buttons -->
+        <div class="category-buttons" id="accessory-category-buttons">
+            <button class="category-btn active" data-category="all">All Accessories</button>
+            <button class="category-btn" data-category="case">Phone Covers</button>
+            <button class="category-btn" data-category="charger">Chargers</button>
+            <button class="category-btn" data-category="screen-protector">Screen Protectors</button>
+        </div>
+
+        <!-- Accessories Grid -->
+        <section class="products-grid" id="accessories-grid">
+            <!-- Accessories will be populated via JavaScript -->
+        </section>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Shop and Learn</h3>
+                <ul>
+                    <li><a href="#">Phones</a></li>
+                    <li><a href="#">Covers</a></li>
+                    <li><a href="#">Chargers</a></li>
+                    <li><a href="#">Screen Protectors</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#">Trade-In</a></li>
+                    <li><a href="#">Repair</a></li>
+                    <li><a href="#">Financing</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>About iDeal</h3>
+                <ul>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Reviews</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 iDeal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript File -->
+    <script src="script.js"></script>
+</body>
+</html>
