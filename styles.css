@@ -158,7 +158,7 @@ nav.divContainer {
 .hero {
     height: calc(100vh - 60px); /* Accounts for margin-top */
     background-image: url('images/newPhones/iphone14pro.webp'); /* Background image */
-    background-size: cover; /* Ensures full coverage */
+    background-size: contain; /* Ensures full coverage */
     background-repeat: no-repeat;
     background-position: center;
     display: flex;
