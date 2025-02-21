@@ -10,6 +10,7 @@
 body {
     background-color: #25274D;
     color: #ffffff;
+    line-height: 1.6;
 }
 
 /* Header Styling */
@@ -24,30 +25,30 @@ header {
 
 /* Nav Container */
 nav.divContainer {
-    display: flex; /* Enables flexbox layout */
-    justify-content: space-between; /* Distributes space between leftS, middleS, and rightS */
-    align-items: center; /* Vertically aligns items to the center */
-    padding: 10px 20px 10px 10px; /* Adds padding around the container */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
 }
 
 /* Left Side: Logo */
-.leftS .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #AAABBB;
+.leftS .logo-image {
+    max-width: 100px;
+    height: auto;
+    display: block;
 }
 
 /* Middle: Navigation Links */
 .middleS ul.nav-links {
-    list-style: none; /* Removes bullet points from the list */
-    margin: 0; /* Resets default margins */
-    padding: 0; /* Resets default padding */
-    display: flex; /* Makes the list items arrange horizontally */
-    gap: 2rem; /* Adds spacing between links */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 2rem;
 }
 
 .middleS li {
-    margin: 0; /* No additional margin needed with gap */
+    margin: 0;
 }
 
 .middleS a {
@@ -64,7 +65,7 @@ nav.divContainer {
 .rightS {
     display: flex;
     align-items: center;
-    gap: 1rem; /* Adds spacing between search bar and cart icon */
+    gap: 1rem;
 }
 
 .rightS .search-container {
@@ -86,80 +87,99 @@ nav.divContainer {
     padding: 2px 8px;
     border-radius: 50%;
     font-size: 0.8rem;
+    color: white;
 }
 
 /* Hamburger Menu Toggle (Visible on Small Screens) */
 .menu-icon {
-    display: none; /* Hidden by default on larger screens */
+    display: none;
     font-size: 24px;
     cursor: pointer;
-    padding: 10px; /* Add some padding for better touch target */
+    padding: 10px;
     color: #AAABBB;
 }
 
 /* Responsive Navbar (Small Screens) */
-@media (max-width: 992px) {
-    /* Hide the middle section (navigation links) */
-    .middleS {
-        display: none; /* Collapses nav-links into hamburger menu */
+@media (max-width: 768px) {
+    /* Hide the middle section (navigation links) and right side */
+    .middleS,
+    .rightS {
+        display: none;
     }
 
     /* Show the hamburger menu toggle */
     .menu-icon {
-        display: flex; /* Shows the hamburger menu */
+        display: flex;
     }
 
     /* Adjust the header layout for smaller screens */
     header nav.divContainer {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: row;
+        align-items: center;
         padding: 10px;
     }
 
-    /* Move search bar below the logo */
-    .rightS {
-        margin-top: 1rem; /* Moves the search bar below the logo */
-        width: 100%; /* Makes the search bar full width */
+    /* Hamburger Menu Dropdown */
+    .nav-links {
+        display: none; /* Hidden by default */
+        flex-direction: column;
+        background-color: #25274D;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        padding: 1rem;
+        z-index: 999;
+        transition: all 0.3s ease;
     }
 
-    /* Full-width search input */
-    #search-input {
-        width: 100%; /* Full width for search input */
+    .nav-links.active {
+        display: flex; /* Visible when active */
     }
-}
 
-/* Hamburger Menu Styles */
-nav.divContainer .nav-links.active {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    background-color: #25274D;
-    position: absolute;
-    top: 100%; /* Below the header */
-    left: 0;
-    right: 0;
-    padding: 1rem;
-    z-index: 999;
+    /* Add search bar and cart inside hamburger menu */
+    .nav-links.active .search-container,
+    .nav-links.active .cart {
+        display: flex;
+        align-items: center;
+        margin-top: 1rem;
+    }
+
+    .nav-links.active .search-container {
+        width: 100%;
+    }
+
+    .nav-links.active .cart {
+        justify-content: flex-end;
+    }
 }
 
 /* Hero Section Styling */
 .hero {
-    height: 100vh;
-    background-image: url('images/hero.png');
-    background-size: cover;
+    height: calc(100vh - 60px); /* Accounts for margin-top */
+    background-image: url('images/newPhones/iphone14pro.webp'); /* Background image */
+    background-size: cover; /* Ensures full coverage */
+    background-repeat: no-repeat;
     background-position: center;
-    background-size: 65%;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     margin-top: 60px;
-    
+    padding: 20px; /* Safety spacing */
 }
 
 .hero-content h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
+}
+
+.hero p {
+    background: rgba(82, 80, 78, 0.2);
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    padding: 1rem;
+    font-weight: 600;
 }
 
 .cta-buttons {
@@ -171,21 +191,25 @@ nav.divContainer .nav-links.active {
 
 .btn {
     padding: 1rem 2rem;
-    background-color: #DA7B93;
+    background-color: #2E9CCA;
     color: white;
     text-decoration: none;
     border-radius: 25px;
     transition: background-color 0.3s;
+    border: solid 2px #AAABBB;
 }
 
 .btn:hover {
-    background-color: #2E151B;
+    background-color: #29648A;
 }
-.categories h2{
+
+.categories h2 {
     text-align: center;
-    margin-top: 3rem;
+    font-size: 2rem;
+    margin-bottom: 1rem;
 }
-/* Products Grid Styling (Shared for Phones and Accessories) */
+
+/* Products Grid Styling */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -194,15 +218,17 @@ nav.divContainer .nav-links.active {
 }
 
 .product-card {
-    border: solid 1px #AAABBB;
+    border: solid 1px #AAABB8;
     border-radius: 10px;
     padding: 1rem;
     text-align: center;
     transition: transform 0.3s ease;
+    background-color: #333552;
 }
 
 .product-card:hover {
     transform: scale(1.05);
+    border-color: #2E9CCA;
 }
 
 .product-card img.product-image {
@@ -210,7 +236,6 @@ nav.divContainer .nav-links.active {
     height: auto;
     border-radius: 5px;
     margin-bottom: 1rem;
-    object-fit: cover; /* Ensures the image scales properly */
 }
 
 .product-card h3 {
@@ -224,6 +249,7 @@ nav.divContainer .nav-links.active {
 }
 
 .product-card button {
+    margin-top: 0.5rem;
     padding: 0.5rem 1rem;
     background-color: #AAABBB;
     color: white;
@@ -235,15 +261,16 @@ nav.divContainer .nav-links.active {
 
 .product-card button:hover {
     background-color: #29648A;
+    border: solid 2px #AAABB8;
 }
 
-/* Category Buttons Styling (Shared for Phones and Accessories) */
+/* Category Buttons Styling */
 .category-buttons {
     display: flex;
     gap: 1rem;
     justify-content: center;
     margin: 2rem 0;
-    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+    flex-wrap: wrap;
 }
 
 .category-btn {
@@ -336,8 +363,8 @@ footer {
     color: white;
     transition: background-color 0.3s, border-color 0.3s;
     font-size: 1rem;
-    width: 100%; /* Full width on small screens */
-    max-width: 200px; /* Limit width on larger screens */
+    width: 100%;
+    max-width: 200px;
 }
 
 #search-input:focus {
@@ -365,7 +392,7 @@ footer {
     gap: 1rem;
     justify-content: center;
     margin: 1rem 0;
-    flex-wrap: wrap; /* Allow controls to wrap on smaller screens */
+    flex-wrap: wrap;
 }
 
 .sort-filter-controls label {
@@ -375,7 +402,7 @@ footer {
 }
 
 .sort-filter-controls select {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 3rem 0.5rem 1rem; /* Adjusted padding for arrow spacing */
     border: solid 1px #AAABBB;
     border-radius: 20px;
     background-color: #464866;
@@ -383,10 +410,10 @@ footer {
     cursor: pointer;
     transition: background-color 0.3s, border-color 0.3s;
     font-size: 1rem;
-    appearance: none; /* Removes default dropdown arrow */
+    appearance: none;
     background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M8%201l4%204-4%204z%22%2F%3E%3C%2Fsvg%3E');
     background-repeat: no-repeat;
-    background-position: right 0.5rem center;
+    background-position: right 1rem center; /* Adjusted arrow position */
     background-size: 1rem;
 }
 
@@ -395,49 +422,66 @@ footer {
     color: white;
 }
 
+/* Clear Filter Button */
+#clear-filter {
+    padding: 0.5rem 1rem;
+    background-color: #AAABBB;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 1rem;
+    margin-left: 1rem;
+}
+
+#clear-filter:hover {
+    background-color: #29648A;
+}
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #2E9CCA;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.back-to-top:hover {
+    background-color: #29648A;
+}
+
 /* Responsive Design */
-@media (max-width: 1200px) {
-    .hero-content h1 {
-        font-size: 2.5rem; /* Slightly reduce font size */
-    }
-    .cta-buttons {
-        flex-direction: column; /* Stack buttons vertically */
-    }
-}
-
 @media (max-width: 768px) {
-    .hero {
-        height: auto; /* Auto height for hero section */
-        padding: 2rem;
+    /* Move search bar and cart into hamburger menu */
+    .middleS,
+    .rightS {
+        display: none;
     }
-    .hero-content h1 {
-        font-size: 2rem; /* Reduce font size further */
-    }
-    .products-grid,
-    .accessories-grid {
-        grid-template-columns: 1fr; /* Single-column layout for grids */
-    }
-    .category-buttons {
-        flex-direction: column; /* Stack category buttons vertically */
-        align-items: center;
-    }
-    .sort-filter-controls {
-        flex-direction: column; /* Stack sorting/filtering controls vertically */
-        align-items: center;
-    }
-}
 
-@media (max-width: 576px) {
-    .logo {
-        font-size: 1.2rem; /* Reduce logo size */
+    /* Show hamburger menu toggle */
+    .menu-icon {
+        display: flex;
     }
-    .hero-content h1 {
-        font-size: 1.8rem; /* Further reduce font size */
+
+    /* Add search bar and cart inside hamburger menu */
+    .nav-links.active .search-container,
+    .nav-links.active .cart {
+        display: flex;
+        align-items: center;
+        margin-top: 1rem;
     }
-    .btn {
-        width: 100%; /* Make buttons full width */
+
+    .nav-links.active .search-container {
+        width: 100%;
     }
-    footer .footer-content {
-        grid-template-columns: 1fr; /* Single-column layout for footer */
+
+    .nav-links.active .cart {
+        justify-content: flex-end;
     }
 }

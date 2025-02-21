@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iDeal - Premium iPhones</title>
+    <title>GALAXY TECH - Premium iPhones</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -13,10 +13,9 @@
         <nav class="divContainer">
             <!-- Left Side: Logo -->
             <div class="leftS">
-                <div class="logo">iDeal</div>
+                <img src="images/LOGO.png" alt="GALAXY TECH Logo" class="logo-image">
             </div>
-
-            <!-- Middle: Navigation Links -->
+            <!-- Middle: Navigation Links (Hidden on Small Screens) -->
             <div class="middleS">
                 <ul class="nav-links">
                     <li><a href="#new">New iPhones</a></li>
@@ -25,82 +24,83 @@
                     <li><a href="#support">Support</a></li>
                 </ul>
             </div>
-
-            <!-- Right Side: Search Bar and Cart Icon -->
+            <!-- Right Side: Search Bar and Cart Icon (Moved Inside Hamburger Menu on Small Screens) -->
             <div class="rightS">
                 <div class="search-container">
-                    <input type="text" id="search-input" placeholder="Search products..." />
-                    <button class="btn" id="search-btn"><i class="fas fa-search"></i></button>
+                    <input type="text" id="search-input" placeholder="Search products..." aria-label="Search Products">
+                    <button class="btn" id="search-btn" aria-label="Search"><i class="fas fa-search"></i></button>
                 </div>
                 <div class="cart">
-                    <i class="fas fa-shopping-bag"></i>
+                    <i class="fas fa-shopping-bag" aria-label="Cart"></i>
                     <span class="cart-count">0</span>
                 </div>
             </div>
-
             <!-- Hamburger Menu Toggle (Visible on Small Screens) -->
-            <div class="menu-icon" id="menu-toggle">
+            <div class="menu-icon" id="menu-toggle" aria-label="Toggle Menu">
                 <i class="fas fa-bars"></i>
             </div>
         </nav>
     </header>
-
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="main-content">
         <div class="hero-content">
-            <h1>iPhone 15 Pro</h1>
-            <p>Titanium. So strong. So light. So Pro.</p>
+            <h1>GALAXY TECH - Your iPhone Destination</h1>
+            <p>Your universe of iPhones. From the latest constellations to classic comets, find the perfect one for you.</p>
             <div class="cta-buttons">
-                <a href="#" class="btn">Learn More</a>
-                <a href="#" class="btn">Buy</a>
+                <a href="#" class="btn" role="button">Shop Pre-Owned</a>
+                <a href="#" class="btn" role="button">Shop New</a>
             </div>
         </div>
     </section>
-
     <!-- Categories Section -->
     <section class="categories">
         <h2>Shop by Category</h2>
         <div class="category-buttons">
-            <button class="category-btn active" data-category="all">All iPhones</button>
-            <button class="category-btn" data-category="new">Brand New</button>
-            <button class="category-btn" data-category="used">Pre-Owned</button>
+            <button class="category-btn active" data-category="all" aria-label="Show All iPhones">All iPhones</button>
+            <button class="category-btn" data-category="new" aria-label="Show Brand New iPhones">Brand New</button>
+            <button class="category-btn" data-category="used" aria-label="Show Pre-Owned iPhones">Pre-Owned</button>
         </div>
-
-        <!-- Sorting and Filtering Dropdowns -->
         <div class="sort-filter-controls">
+            <label for="model-select">Filter by Model:</label>
+            <select id="model-select" aria-label="Filter Products by Model">
+                <option value="all">All Models</option>
+                <option value="iPhone 14">iPhone 14</option>
+                <option value="iPhone 13">iPhone 13</option>
+                <option value="iPhone 12">iPhone 12</option>
+                <option value="iPhone 11">iPhone 11</option>
+                <option value="iPhone XR">iPhone XR</option>
+                <option value="iPhone X">iPhone X</option>
+                <option value="iPhone 8">iPhone 8</option>
+                <option value="iPhone 7">iPhone 7</option>
+            </select>
             <label for="sort-select">Sort By:</label>
-            <select id="sort-select">
+            <select id="sort-select" aria-label="Sort Products">
                 <option value="default">Default</option>
                 <option value="price-low-to-high">Price: Low to High</option>
                 <option value="price-high-to-low">Price: High to Low</option>
             </select>
+            <button id="clear-filter" aria-label="Clear Filters">Clear Filter</button>
         </div>
     </section>
-
     <!-- Products Section -->
     <section class="products">
         <div class="products-grid" id="products-grid">
             <!-- Products will be populated via JavaScript -->
         </div>
     </section>
-
     <!-- Accessories Section -->
     <section class="accessories">
         <h2>Accessories</h2>
-        <!-- Accessory Category Buttons -->
         <div class="category-buttons" id="accessory-category-buttons">
-            <button class="category-btn active" data-category="all">All Accessories</button>
-            <button class="category-btn" data-category="case">Phone Covers</button>
-            <button class="category-btn" data-category="charger">Chargers</button>
-            <button class="category-btn" data-category="screen-protector">Screen Protectors</button>
+            <button class="category-btn active" data-category="all" aria-label="Show All Accessories">All Accessories</button>
+            <button class="category-btn" data-category="case" aria-label="Show Phone Covers">Phone Covers</button>
+            <button class="category-btn" data-category="charger" aria-label="Show Chargers">Chargers</button>
+            <button class="category-btn" data-category="screen-protector" aria-label="Show Screen Protectors">Screen Protectors</button>
         </div>
-
-        <!-- Accessories Grid -->
-        <section class="products-grid" id="accessories-grid">
+        <div class="products-grid" id="accessories-grid">
             <!-- Accessories will be populated via JavaScript -->
-        </section>
+        </div>
     </section>
-
     <!-- Footer Section -->
     <footer>
         <div class="footer-content">
@@ -122,7 +122,7 @@
                 </ul>
             </div>
             <div class="footer-section">
-                <h3>About iDeal</h3>
+                <h3>About GALAXY TECH</h3>
                 <ul>
                     <li><a href="#">Contact</a></li>
                     <li><a href="#">Reviews</a></li>
@@ -130,11 +130,13 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2023 iDeal. All rights reserved.</p>
+            <p>&copy; <span id="current-year"></span> GALAXY TECH. All rights reserved.</p>
+            <p>Coded & Designed by <a href="https://www.linkedin.com/in/spmashabela" target="_blank">@Popps.Mash</a>.</p>
         </div>
+        <!-- Back to Top Button -->
+        <a href="#main-content" class="back-to-top" aria-label="Back to Top">Back to Top</a>
     </footer>
-
-    <!-- JavaScript File -->
+    <!-- External JavaScript File -->
     <script src="script.js"></script>
 </body>
 </html>
