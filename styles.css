@@ -36,8 +36,11 @@ nav.divContainer {
     max-width: 100px;
     height: auto;
     display: block;
+    transition: 0.5s;
 }
-
+.leftS img :hover{
+    transform: scale(1.2);
+ }
 /* Middle: Navigation Links */
 .middleS ul.nav-links {
     list-style: none;
