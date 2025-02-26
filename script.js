@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search-input');
     const sortSelect = document.getElementById('sort-select');
     const modelSelect = document.getElementById('model-select'); // Model filter dropdown
+    const clearFilterButton = document.getElementById('clear-filter');
     const menuToggle = document.getElementById('menu-toggle');
     const navLinks = document.querySelector('.middleS .nav-links');
 
@@ -60,12 +61,16 @@ document.addEventListener('DOMContentLoaded', () => {
     let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
 
     // Function to render products
-    function renderProducts(category = 'all') {
+    function renderProducts(category = 'all', model = 'all') {
         productsGrid.innerHTML = '';
         let filteredProducts = products;
 
         if (category !== 'all') {
             filteredProducts = filteredProducts.filter(product => product.category === category);
+        }
+
+        if (model !== 'all') {
+            filteredProducts = filteredProducts.filter(product => product.name.includes(model));
         }
 
         // Sort by ID (ascending order) to display products from ID 1 to ID 33
@@ -106,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const productCard = document.createElement('div');
         productCard.className = 'product-card';
         productCard.innerHTML = `
-            <img src="${item.image}" alt="${item.name}" class="product-image">
+            <img src="${item.image}" alt="${item.name}" class="product-image" onerror="this.src='images/placeholder.png';">
             <h3>${item.name}</h3>
             <p class="price">R${item.price}</p>
             <p>Storage: ${item.storage || 'N/A'}</p>
@@ -151,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
             phoneCategoryButtons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
             const category = button.dataset.category;
-            renderProducts(category);
+            renderProducts(category, modelSelect.value);
         });
     });
 
@@ -168,17 +173,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // Search functionality
     searchInput.addEventListener('input', () => {
         const query = searchInput.value.toLowerCase();
-        const filteredProducts = products.filter(product =>
-            product.name.toLowerCase().includes(query) ||
-            product.storage?.toLowerCase().includes(query) ||
-            product.condition?.toLowerCase().includes(query)
+        const filteredProducts = products.concat(accessories).filter(item =>
+            item.name.toLowerCase().includes(query) ||
+            item.storage?.toLowerCase().includes(query) ||
+            item.condition?.toLowerCase().includes(query) ||
+            item.type?.toLowerCase().includes(query)
         );
-        renderProducts(null); // Reset filters
+
         productsGrid.innerHTML = '';
-        filteredProducts.forEach(product => {
-            const productCard = createProductCard(product);
-            productsGrid.appendChild(productCard);
-        });
+        accessoriesGrid.innerHTML = '';
+
+        if (filteredProducts.length > 0) {
+            filteredProducts.forEach(item => {
+                const productCard = createProductCard(item);
+                productsGrid.appendChild(productCard);
+            });
+        } else {
+            productsGrid.innerHTML = '<p style="text-align: center; color: #AAABBB;">No results found.</p>';
+        }
+
         addCartEventListeners();
     });
 
@@ -191,6 +204,8 @@ document.addEventListener('DOMContentLoaded', () => {
             sortedProducts.sort((a, b) => a.price - b.price);
         } else if (sortBy === 'price-high-to-low') {
             sortedProducts.sort((a, b) => b.price - a.price);
+        } else if (sortBy === 'default') {
+            sortedProducts.sort((a, b) => a.id - b.id); // Default: Sort by ID
         }
 
         renderProducts(null); // Reset filters
@@ -199,7 +214,40 @@ document.addEventListener('DOMContentLoaded', () => {
             const productCard = createProductCard(product);
             productsGrid.appendChild(productCard);
         });
+
         addCartEventListeners();
+    });
+
+    // Populate model dropdown dynamically
+    function populateModelDropdown() {
+        const uniqueModels = ['all', ...new Set(products.map(product => product.name.split(' ')[1]))];
+        modelSelect.innerHTML = ''; // Clear existing options
+
+        uniqueModels.forEach(model => {
+            const option = document.createElement('option');
+            option.value = model;
+            option.textContent = model === 'all' ? 'All Models' : `iPhone ${model}`;
+            modelSelect.appendChild(option);
+        });
+    }
+
+    populateModelDropdown();
+
+    // Model filter functionality
+    modelSelect.addEventListener('change', () => {
+        const selectedModel = modelSelect.value;
+        const selectedCategory = document.querySelector('.category-btn.active')?.dataset.category || 'all';
+        renderProducts(selectedCategory, selectedModel);
+    });
+
+    // Clear filter button functionality
+    clearFilterButton.addEventListener('click', () => {
+        modelSelect.value = 'all'; // Reset model filter
+        sortSelect.value = 'default'; // Reset sort filter
+        phoneCategoryButtons[0].classList.add('active'); // Re-enable "All" button
+        phoneCategoryButtons.forEach(btn => btn !== phoneCategoryButtons[0] && btn.classList.remove('active'));
+
+        renderProducts('all'); // Reset to default view
     });
 
     // Hamburger Menu Toggle
@@ -216,7 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Initial render (sorted by ID from 1 to 33)
+    // Initial render
     renderProducts('all');
     renderAccessories('all');
     updateCartCount();
